@@ -1,30 +1,91 @@
-import {useState} from "react"
-import {Link} from "react-router-dom"
 
-function Index(props) {
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-    const loaded = () => {
-        return props.bookmark.map((mark) => (
-            <div key={mark._id} className="bookmark">
-                <Link to={`/bookmarks/${mark._id}`}>
-                    <h1>{mark.name}</h1>
-                </Link>
-                <h3>{mark.slogan}</h3>
-            </div>
-        ))
-    }
+function Index(props){
+// State to hold formData
+const [newForm, setNewForm] = useState({
+    name: "",
+    url: "",
+    slogan: "",
+    description: "",
+})
 
-    const loading = () => {
-        return <h1>Loading Bookmarks</h1>
-    }
 
-    return (
-        <div>
-        <h1>Index</h1>
-        {props.bookmark ? loaded() : loading()}
-        </div>
-    )
-    
+
+// handleChange function for form
+const handleChange = event => {
+    setNewForm({ ...newForm, [event.target.name]: event.target.value })
 }
 
-export default Index
+// handleSubmit function for form
+const handleSubmit = event => {
+    event.preventDefault()
+    props.createBookmarks(newForm)
+    setNewForm({
+        name: "",
+        url: "",
+        slogan: "",
+        description: "",
+})   
+}
+
+
+    // Loaded function
+    const loaded = () => {
+return props.bookmarks.map((bookmark) => (
+    <div key={bookmark._id} className="bookmark">
+        <Link to={`/bookmarks/${bookmark._id}`}><h1>{bookmark.name}</h1></Link>
+        <h2>{bookmark.url}</h2>
+        <h2>{bookmark.slogan}</h2>
+        <h3>{bookmark.description}</h3>
+    </div>
+));
+    };
+
+
+const loading = () => {
+    return <h1>Loading ...</h1>;
+};
+return (
+    <section>
+        <form onSubmit={handleSubmit}>
+            <input 
+            type="text"
+            value={newForm.name}
+            name="name"
+            placeholder="name"
+            onChange={handleChange}
+            />
+             <input 
+            type="text"
+            value={newForm.url}
+            name="url"
+            placeholder="url"
+            onChange={handleChange}
+            />
+             <input 
+            type="text"
+            value={newForm.slogan}
+            name="slogan"
+            placeholder="slogan"
+            onChange={handleChange}
+            />
+            <input 
+            type="text"
+            value={newForm.description}
+            name="description"
+            placeholder="description"
+            onChange={handleChange}
+            />
+            <input type="submit" value="Create Bookmark" />
+        </form>
+        <div className="bookmarkList">
+       {props.bookmarks ? loaded() : loading()}
+       </div>
+    </section>
+)
+   } 
+  
+  export default Index
+
