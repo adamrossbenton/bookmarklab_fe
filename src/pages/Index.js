@@ -5,9 +5,12 @@ function Index(props){
 // State to hold formData
 const [newForm, setNewForm] = useState({
     name: "",
-    URL: "",
+    url: "",
+    slogan: "",
     description: "",
 })
+
+
 
 // handleChange function for form
 const handleChange = event => {
@@ -20,7 +23,8 @@ const handleSubmit = event => {
     props.createBookmarks(newForm)
     setNewForm({
         name: "",
-        URL: "",
+        url: "",
+        slogan: "",
         description: "",
 })   
 }
@@ -32,6 +36,7 @@ return props.bookmarks.map((bookmark) => (
     <div key={bookmark._id} className="bookmark">
         <Link to={`/bookmarks/${bookmark._id}`}><h1>{bookmark.name}</h1></Link>
         <h2>{bookmark.url}</h2>
+        <h2>{bookmark.slogan}</h2>
         <h3>{bookmark.description}</h3>
     </div>
 ));
@@ -59,6 +64,13 @@ return (
             onChange={handleChange}
             />
              <input 
+            type="text"
+            value={newForm.slogan}
+            name="slogan"
+            placeholder="slogan"
+            onChange={handleChange}
+            />
+            <input 
             type="text"
             value={newForm.description}
             name="description"

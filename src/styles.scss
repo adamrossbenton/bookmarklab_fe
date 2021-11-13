@@ -1,0 +1,96 @@
+// --------------------------
+// VARIABLES
+// --------------------------
+$maincolor: black;
+$contrastcolor: white;
+
+@mixin white-text-black-bg {
+  color: $contrastcolor;
+  background-color: $maincolor;
+}
+
+@mixin black-test-white-bg {
+  color: $maincolor;
+  background-color: $contrastcolor;
+}
+
+// --------------------------
+// Header
+// --------------------------
+body {
+    background-color: gray;
+}
+nav {
+  @include white-text-black-bg;
+  display: flex;
+  justify-content: flex-start;
+
+  a {
+    @include white-text-black-bg;
+    div {
+      margin: 10px;
+      font-size: large;
+    }
+  }
+}
+
+// --------------------------
+// Form
+// --------------------------
+section, div {
+  form {
+    input {
+      @include white-text-black-bg;
+      padding: 10px;
+      font-size: 1.1em;
+      margin: 10px;
+      border-radius: 5px;
+      box-shadow: 10px 10px 5px gray;
+
+      &:hover{
+        border: solid darkblue 5px;
+        padding: 5px;
+        transition: 0.2s;
+      }
+    
+  }
+}
+} 
+
+
+button#delete {
+  @include white-text-black-bg;
+  display: block;
+  margin: auto;
+  font-size: 1.0em;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: red;
+  &:hover{
+    border: solid darkblue 5px;
+    padding: 5px;
+    transition: 0.2s;
+  }
+}
+
+//--------------------------
+//Bookmark display
+//--------------------------
+.bookmark {
+    border-radius: 5px;
+    border: solid black 3px;
+    width: 25%;
+    margin: 10px;
+    background-color: lightgray;
+    transition: transform 0.2s;
+    &:hover {
+     transform: scale(1.1); 
+    }
+}
+
+.bookmarkList{
+    display: flex;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
