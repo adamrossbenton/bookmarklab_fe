@@ -53,6 +53,7 @@ return (
             name="name"
             placeholder="Name"
             onChange={handleChange}
+            required
             />
              <input 
             type="text"
@@ -60,6 +61,7 @@ return (
             name="url"
             placeholder="URL"
             onChange={handleChange}
+            required
             />
              <input 
             type="text"
