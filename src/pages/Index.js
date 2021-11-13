@@ -46,12 +46,21 @@ const loading = () => {
 };
 return (
     <section>
+<li ng-repeat="bookmark in bookmarks | filter:searchBox">
+    {/* {{bookmark.name + ' : ' + bookmark.url }} */}
+</li>
+
         <form onSubmit={handleSubmit}>
             <input 
             type="text"
             value={newForm.name}
             name="name"
+<<<<<<< HEAD
+            require
+            placeholder="name"
+=======
             placeholder="Name"
+>>>>>>> dev
             onChange={handleChange}
             required
             />
@@ -59,7 +68,12 @@ return (
             type="text"
             value={newForm.url}
             name="url"
+<<<<<<< HEAD
+            required
+            placeholder="url"
+=======
             placeholder="URL"
+>>>>>>> dev
             onChange={handleChange}
             required
             />
