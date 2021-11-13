@@ -54,6 +54,7 @@ return (
             type="text"
             value={newForm.name}
             name="name"
+            require
             placeholder="name"
             onChange={handleChange}
             />
@@ -61,6 +62,7 @@ return (
             type="text"
             value={newForm.url}
             name="url"
+            required
             placeholder="url"
             onChange={handleChange}
             />
