@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
 // --------------------------
 // VARIABLES
 // --------------------------
@@ -14,16 +16,25 @@ $contrastcolor: white;
   background-color: $contrastcolor;
 }
 
+@mixin formbookcolors {
+  background-color: #47596f;
+  color: #D7C8B4;
+}
+
+
 // --------------------------
 // Header
 // --------------------------
 body {
-    background-color: gray;
+    background-color: #9b775d;
+    font-family: 'Raleway';
+    text-decoration: none;
 }
 nav {
   @include white-text-black-bg;
   display: flex;
   justify-content: flex-start;
+  background-color: #54101d;
 
   a {
     @include white-text-black-bg;
@@ -31,26 +42,30 @@ nav {
       margin: 10px;
       font-size: large;
     }
+    background-color: inherit;
   }
 }
 
-// --------------------------
+a:link, a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+  // --------------------------
 // Form
 // --------------------------
 section, div {
   form {
+    margin: 10px 0 10px 0;
     input {
-      @include white-text-black-bg;
+      @include formbookcolors;
       padding: 10px;
       font-size: 1.1em;
       margin: 10px;
       border-radius: 5px;
-      box-shadow: 10px 10px 5px gray;
-
       &:hover{
-        border: solid darkblue 5px;
-        padding: 5px;
-        transition: 0.2s;
+        border: solid #02385A;
       }
     
   }
@@ -76,21 +91,36 @@ button#delete {
 //--------------------------
 //Bookmark display
 //--------------------------
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.bName {
+  display: inline;
+}
+
 .bookmark {
-    border-radius: 5px;
-    border: solid black 3px;
-    width: 25%;
+    border-radius: 20px;
+    border: solid #312229 3px;
+    width: 50%;
     margin: 10px;
-    background-color: lightgray;
+    padding: 12px 0 12px 0;
+    background-color: #d5c5ae;
     transition: transform 0.2s;
     &:hover {
      transform: scale(1.1); 
     }
 }
 
+span {
+  font-size: larger;
+}
+
 .bookmarkList{
     display: flex;
-    align-content: stretch;
+    flex-direction: column;
+    align-content: center;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
