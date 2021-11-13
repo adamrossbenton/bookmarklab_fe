@@ -35,10 +35,7 @@ const handleSubmit = event => {
     const loaded = () => {
 return props.bookmarks.map((bookmark) => (
     <div key={bookmark._id} className="bookmark">
-        <Link to={`/bookmarks/${bookmark._id}`}><h1>{bookmark.name}</h1></Link>
-        <h2>{bookmark.url}</h2>
-        <h2>{bookmark.slogan}</h2>
-        <h3>{bookmark.description}</h3>
+        <Link to={`/bookmarks/${bookmark._id}`}><h1 className="bName">{bookmark.name} &emsp;</h1><span>{bookmark.slogan}</span></Link>
     </div>
 ));
     };
@@ -54,28 +51,28 @@ return (
             type="text"
             value={newForm.name}
             name="name"
-            placeholder="name"
+            placeholder="Name"
             onChange={handleChange}
             />
              <input 
             type="text"
             value={newForm.url}
             name="url"
-            placeholder="url"
+            placeholder="URL"
             onChange={handleChange}
             />
              <input 
             type="text"
             value={newForm.slogan}
             name="slogan"
-            placeholder="slogan"
+            placeholder="Slogan"
             onChange={handleChange}
             />
             <input 
             type="text"
             value={newForm.description}
             name="description"
-            placeholder="description"
+            placeholder="Description"
             onChange={handleChange}
             />
             <input type="submit" value="Create Bookmark" />
