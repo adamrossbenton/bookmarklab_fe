@@ -49,6 +49,10 @@ const loading = () => {
 };
 return (
     <section>
+<li ng-repeat="bookmark in bookmarks | filter:searchBox">
+    {/* {{bookmark.name + ' : ' + bookmark.url }} */}
+</li>
+
         <form onSubmit={handleSubmit}>
             <input 
             type="text"
