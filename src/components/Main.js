@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
+import Login from "../pages/Login"
 
 function Main(props) {
     const [bookmarks, setBookmarks] = useState(null);
@@ -57,9 +58,12 @@ const deleteBookmarks = async id => {
     return (
     <main>
         <Switch>
-           <Route exact path="/">
-            <Index bookmarks={bookmarks} createBookmarks={createBookmarks} />
-           </Route>
+            <Route exact path="/">
+                <Login />
+            </Route>
+            <Route>
+                <Index bookmarks={bookmarks} createBookmarks={createBookmarks} />
+            </Route>
             <Route
                 path="/bookmarks/:id"
                 render={(rp) => (
