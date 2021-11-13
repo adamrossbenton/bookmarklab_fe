@@ -7,10 +7,11 @@ import Login from "../pages/Login"
 
 function Main(props) {
     const [bookmarks, setBookmarks] = useState(null);
-   
+    const [user, setUser] = useState()
+
     const URL = "https://bookmarkbackend.herokuapp.com/bookmarks/"
     // const URL = "localhost:3000/bookmarks/"
-
+    const userURL = "https://bookmarkbackend.herokuapp.com/user/"
 
     const getBookmarks = async () => {
        const response = await fetch(URL);
@@ -51,7 +52,25 @@ const deleteBookmarks = async id => {
     })
     // Update list of bookmarks
     getBookmarks()
-}
+    }
+
+    const getUser = async () => {
+        const response = await fetch(userURL);
+        const data = await response.json();
+        setUser(data);
+    }
+
+    // create user for login route
+    const createUser = async (user) => {
+    await fetch(URL, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+    });
+    getUser();
+    }
 
     useEffect(() => getBookmarks(), []);
 

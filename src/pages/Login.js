@@ -7,13 +7,18 @@ function Login(props) {
         password: "",
     })
 
+    // handleSubmit to login user
+    const handleSubmit = event => {
+        event.preventDefault()
+    }
+
     // handleChange for completing form
     const handleChange = event => {
         setNewForm({ ...newForm, [event.target.name]: event.target.value })
     }
         
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <p>Username</p><input 
                 type="text"
                 name="username"
@@ -25,7 +30,8 @@ function Login(props) {
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
-            />
+            /><br />
+            <input type="submit" value="Login" />
         </form>
     )
 }
