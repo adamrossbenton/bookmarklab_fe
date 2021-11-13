@@ -79,7 +79,9 @@ return (
             />
             <input type="submit" value="Create Bookmark" />
         </form>
+        <div className="bookmarkList">
        {props.bookmarks ? loaded() : loading()}
+       </div>
     </section>
 )
    } 
