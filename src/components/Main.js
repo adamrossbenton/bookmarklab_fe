@@ -78,7 +78,7 @@ const deleteBookmarks = async id => {
     <main>
         <Switch>
             <Route exact path="/">
-                <Login />
+                <Login user={user} createUser={createUser}/>
             </Route>
             <Route>
                 <Index bookmarks={bookmarks} createBookmarks={createBookmarks} />
