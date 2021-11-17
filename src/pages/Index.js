@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Index(props){
@@ -10,7 +10,6 @@ const [newForm, setNewForm] = useState({
     slogan: "",
     description: "",
 })
-
 
 
 // handleChange function for form
@@ -30,15 +29,36 @@ const handleSubmit = event => {
 })   
 }
 
+// Adding search
+const bookmarks = props.bookmarks;
+const [info, setInfo] = useState(bookmarks);
+const inputRef = useRef(null);
+useEffect(() => setInfo(bookmarks), [props.bookmarks]);
+
+const handleClick = (event) => {
+    console.log("Hey there")
+    const newInfo = bookmarks.filter((v) => {
+        const search = inputRef.current.value;
+        return v.name.toLowerCase().includes(search.toLowerCase());
+    });
+    setInfo(newInfo);    
+   
+};
+console.log(info)
+
 
     // Loaded function
     const loaded = () => {
-return props.bookmarks.map((bookmark) => (
+return info.map((bookmark) => (
+ 
     <div key={bookmark._id} className="bookmark">
         <Link to={`/bookmarks/${bookmark._id}`}><h1 className="bName">{bookmark.name} &emsp;</h1><span>{bookmark.slogan}</span></Link>
     </div>
+
 ));
     };
+
+
 
 
 const loading = () => {
@@ -46,21 +66,13 @@ const loading = () => {
 };
 return (
     <section>
-<li ng-repeat="bookmark in bookmarks | filter:searchBox">
-    {/* {{bookmark.name + ' : ' + bookmark.url }} */}
-</li>
 
         <form onSubmit={handleSubmit}>
             <input 
             type="text"
             value={newForm.name}
             name="name"
-<<<<<<< HEAD
-            require
-            placeholder="name"
-=======
             placeholder="Name"
->>>>>>> dev
             onChange={handleChange}
             required
             />
@@ -68,12 +80,7 @@ return (
             type="text"
             value={newForm.url}
             name="url"
-<<<<<<< HEAD
-            required
-            placeholder="url"
-=======
             placeholder="URL"
->>>>>>> dev
             onChange={handleChange}
             required
             />
@@ -93,8 +100,15 @@ return (
             />
             <input type="submit" value="Create Bookmark" />
         </form>
+
+        <div className="Searchbar">
+       
+          <input type="text" ref={inputRef} />
+          <button onClick={handleClick}>Search</button>
+        </div>
+
         <div className="bookmarkList">
-       {props.bookmarks ? loaded() : loading()}
+       {info ? loaded() : loading()}
        </div>
     </section>
 )
