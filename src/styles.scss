@@ -33,7 +33,7 @@ body {
 nav {
   @include white-text-black-bg;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: #54101d;
 
   a {
